@@ -323,9 +323,6 @@ type alias VariableCommonFields =
     { entity : EntityKey
     , label : Maybe String
     , name : VariableName
-    , sourceCode : String
-    , sourceFilePath : String
-    , startLineNumber : Int
     }
 
 

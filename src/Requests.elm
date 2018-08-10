@@ -236,9 +236,6 @@ variableCommonFieldsDecoder =
         |: (field "entity" string)
         |: (maybe (field "label" string))
         |: (field "name" string)
-        |: (field "source_code" string)
-        |: (field "source_file_path" string)
-        |: (field "start_line_number" int)
 
 
 variableDecoder : Decoder Variable
