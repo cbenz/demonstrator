@@ -3,7 +3,7 @@ var requestAnimationFrame = typeof window.requestAnimationFrame !== 'undefined'
   : function (callback) { setTimeout(function () { callback() }, 0) }
 
 // eslint-disable-next-line no-unused-vars
-function setupLocalStoragePort (app) {
+export function setupLocalStoragePort (app) {
   app.ports.writeToLocalStorage.subscribe(function (options) {
     if (options.value !== null) {
       window.localStorage.setItem(options.key, JSON.stringify(options.value, null, 2))
@@ -14,7 +14,7 @@ function setupLocalStoragePort (app) {
 }
 
 // eslint-disable-next-line no-unused-vars
-function setupWaterfallPort (app) {
+export function setupWaterfallPort (app) {
   var update
   function mountOrUpdateWaterfall (data) {
     var containerSelector = '#waterfall'

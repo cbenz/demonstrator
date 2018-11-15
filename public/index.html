@@ -15,7 +15,13 @@
         <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="/static/charts/waterfall.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/charts/waterfall.css">
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
 </head>
 
 <body>
@@ -23,27 +29,11 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
     <script src="//d3js.org/d3.v4.min.js"></script>
-    <script src="/static/charts/waterfall.js"></script>
-    <script src="/static/ports.js"></script>
-    <script src="/_compile/src/Main.elm"></script>
-    <script>
-        const apiBaseUrl = "https://api.openfisca.fr/api";
-        var displayDisclaimer = window.localStorage.getItem("display-disclaimer")
-        if (displayDisclaimer === null) {
-            displayDisclaimer = true
-        } else {
-            displayDisclaimer = JSON.parse(displayDisclaimer)
-        }
-        var flags = {
-            apiBaseUrl: apiBaseUrl,
-            displayDisclaimer: displayDisclaimer
-        }
-        var app = runElmProgram(flags)
-        if (app) { // app is null when there are compilation errors.
-            setupLocalStoragePort(app)
-            setupWaterfallPort(app)
-        }
-    </script>
+    <script src="%PUBLIC_URL%/charts/waterfall.js"></script>
+    <noscript>
+        You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root"></div>
 </body>
 
 </html>

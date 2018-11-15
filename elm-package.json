@@ -2,6 +2,7 @@
     "version": "0.0.1",
     "summary": "OpenFisca Demonstrator",
     "repository": "https://github.com/cbenz/demonstrator.git",
+    "homepage": "./",
     "license": "AGPLv3+",
     "source-directories": [
         "src"

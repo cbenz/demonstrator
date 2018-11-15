@@ -2,9 +2,14 @@
   "name": "openfisca-demonstrator",
   "version": "0.0.1",
   "scripts": {
-    "lint": "eslint static"
+    "lint": "eslint src/ && elm-format src/",
+    "build": "elm-app build",
+    "start": "elm-app start",
+    "deploy": "npm run build && gh-pages -d build"
   },
   "devDependencies": {
-    "eslint": "^3.12.2"
+    "elm-format": "^0.6.1-alpha",
+    "eslint": "^3.12.2",
+    "gh-pages": "^1.2.0"
   }
 }

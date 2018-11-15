@@ -98,8 +98,10 @@ type alias Entities =
 
 
 {-| The max number of individuals having a role is defined either:
-- by the `.max` field
-- by the length of the `.subroles` field
+
+  - by the `.max` field
+  - by the length of the `.subroles` field
+
 -}
 roleMax : Role -> Maybe Int
 roleMax role =
@@ -118,6 +120,7 @@ nextRole [x] roles = parents
 nextRole [x, y] roles = enfants
 nextRole [x, y, z] roles = enfants
 ...
+
 -}
 nextRole : List Individual -> List Role -> Maybe Role
 nextRole individuals roles =
@@ -166,38 +169,39 @@ type alias GroupedIndividualIds =
 {-| Groups individuals by entity key then by role key.
 
 before =
-    [ Dict.fromList
-        [ ( "familles", Dict.fromList [ ( "parents", [ "individual_1" ] ) ] )
-        , ( "foyers_fiscaux", Dict.fromList [ ( "declarants", [ "individual_1" ] ) ] )
-        , ( "menages", Dict.fromList [ ( "personne_de_reference", [ "individual_1" ] ) ] )
-        ]
-    , Dict.fromList
-        [ ( "familles", Dict.fromList [ ( "parents", [ "individual_2" ] ) ] )
-        , ( "foyers_fiscaux", Dict.fromList [ ( "declarants", [ "individual_2" ] ) ] )
-        , ( "menages", Dict.fromList [ ( "conjoint", [ "individual_2" ] ) ] )
-        ]
-    ]
+[ Dict.fromList
+[ ( "familles", Dict.fromList [ ( "parents", [ "individual_1" ] ) ] )
+, ( "foyers_fiscaux", Dict.fromList [ ( "declarants", [ "individual_1" ] ) ] )
+, ( "menages", Dict.fromList [ ( "personne_de_reference", [ "individual_1" ] ) ] )
+]
+, Dict.fromList
+[ ( "familles", Dict.fromList [ ( "parents", [ "individual_2" ] ) ] )
+, ( "foyers_fiscaux", Dict.fromList [ ( "declarants", [ "individual_2" ] ) ] )
+, ( "menages", Dict.fromList [ ( "conjoint", [ "individual_2" ] ) ] )
+]
+]
 
 after =
-    Just
-        (Dict.fromList
-            [ ( "familles", Dict.fromList [ ( "parents", [ "individual_1", "individual_2" ] ) ] )
-            , ( "foyers_fiscaux", Dict.fromList [ ( "declarants", [ "individual_1", "individual_2" ] ) ] )
-            , ( "menages"
-              , Dict.fromList
-                    [ ( "conjoint", [ "individual_2" ] )
-                    , ( "personne_de_reference", [ "individual_1" ] )
-                    ]
-              )
-            ]
-        )
+Just
+(Dict.fromList
+[ ( "familles", Dict.fromList [ ( "parents", [ "individual_1", "individual_2" ] ) ] )
+, ( "foyers_fiscaux", Dict.fromList [ ( "declarants", [ "individual_1", "individual_2" ] ) ] )
+, ( "menages"
+, Dict.fromList
+[ ( "conjoint", [ "individual_2" ] )
+, ( "personne_de_reference", [ "individual_1" ] )
+]
+)
+]
+)
 
 TODO Do not store a `List Individual` when max = 1 for example. Use OneOrMany perhaps, like so:
 type OneOrMany a
-    = One a
-    | Many (List a)
+= One a
+| Many (List a)
 type alias GroupedIndividualIds =
-    Dict EntityKey (Dict RoleKey (OneOrMany IndividualId))
+Dict EntityKey (Dict RoleKey (OneOrMany IndividualId))
+
 -}
 groupByEntityAndRole : List Individual -> Maybe GroupedIndividualIds
 groupByEntityAndRole individuals =
@@ -264,8 +268,7 @@ getValue values axes =
             axes
                 |> List.map .selectedIndex
                 -- TODO Really take into account selected indexes when multiple axes
-                |>
-                    List.head
+                |> List.head
                 |> Maybe.withDefault 0
     in
         List.getAt index values

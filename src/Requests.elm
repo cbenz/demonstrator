@@ -390,13 +390,14 @@ simulate baseUrl individuals year axes =
                                                         , ( "max", Encode.float axis.max )
                                                         , ( "min", Encode.float axis.min )
                                                         , ( "name", Encode.string axis.variableName )
-                                                          -- , ( "period"
-                                                          --   , Encode.string
-                                                          --         (toString (year - nbYearsPadding + 1)
-                                                          --             ++ ":"
-                                                          --             ++ (toString nbYearsPadding)
-                                                          --         )
-                                                          --   )
+
+                                                        -- , ( "period"
+                                                        --   , Encode.string
+                                                        --         (toString (year - nbYearsPadding + 1)
+                                                        --             ++ ":"
+                                                        --             ++ (toString nbYearsPadding)
+                                                        --         )
+                                                        --   )
                                                         ]
                                                     ]
                                                 )

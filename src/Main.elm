@@ -67,22 +67,23 @@ initialModel =
     { apiBaseUrl = "//localhost:2000/api"
     , axes =
         []
-        -- [
-        --   { count = 50
-        --   , individualIndex = 0
-        --   , max = 100000
-        --   , min = 0
-        --   , selectedIndex = 0
-        --   , variableName = salaireVariableName
-        --   }
-        --   , { count = 50
-        --     , individualIndex = 1
-        --     , max = 100000
-        --     , min = 0
-        --     , selectedIndex = 0
-        --     , variableName = salaireVariableName
-        --     }
-        -- ]
+
+    -- [
+    --   { count = 50
+    --   , individualIndex = 0
+    --   , max = 100000
+    --   , min = 0
+    --   , selectedIndex = 0
+    --   , variableName = salaireVariableName
+    --   }
+    --   , { count = 50
+    --     , individualIndex = 1
+    --     , max = 100000
+    --     , min = 0
+    --     , selectedIndex = 0
+    --     , variableName = salaireVariableName
+    --     }
+    -- ]
     , debounce = Debounce.init
     , displayDisclaimer = True
     , displayRoles = False
@@ -100,7 +101,8 @@ initialIndividuals individuals entities =
     [ { inputValues =
             Dict.fromList
                 [ ( salaireVariableName, FloatInputValue 0 )
-                  -- , ( "statut_marital", EnumInputValue "1" )
+
+                -- , ( "statut_marital", EnumInputValue "1" )
                 ]
       , roles = nextRoles individuals entities.groups
       }
@@ -442,7 +444,8 @@ view model =
                         Loading ->
                             [ p []
                                 [ text "Loading data..."
-                                  -- TODO i18n
+
+                                -- TODO i18n
                                 ]
                             ]
 
@@ -466,7 +469,8 @@ view model =
                                                 Loading ->
                                                     [ p []
                                                         [ text "Calculation in progress..."
-                                                          -- TODO i18n
+
+                                                        -- TODO i18n
                                                         ]
                                                     ]
 
@@ -527,7 +531,8 @@ viewDecomposition axes simulateNode =
             [ div [ class "panel-heading" ]
                 [ h3 [ class "panel-title" ]
                     [ text "Decomposition of household income"
-                      -- TODO i18n
+
+                    -- TODO i18n
                     ]
                 ]
             , ul [ class "list-group" ]
@@ -552,7 +557,8 @@ viewDisclaimer =
             , type_ "button"
             ]
             [ text "×" ]
-          -- TODO i18n (all below)
+
+        -- TODO i18n (all below)
         , h4 [] [ text "À propos de cet outil" ]
         , ul []
             [ li [] [ text "OpenFisca est un simulateur socio-fiscal en cours de développement." ]
@@ -597,7 +603,8 @@ viewFooter =
                         , target "_blank"
                         ]
                         [ text "Home"
-                          -- TODO i18n
+
+                        -- TODO i18n
                         ]
                     ]
                 , li
@@ -634,7 +641,8 @@ viewFooter =
                 ]
             , p []
                 [ text "Code licensed "
-                  -- TODO Fix link
+
+                -- TODO Fix link
                 , a
                     [ href "https://github.com/openfisca/demonstrator/blob/master/LICENSE"
                     , target "_blank"
@@ -691,7 +699,8 @@ viewIndividual model entities variablesResponse individualIndex individual =
                                         [ class "form-control"
                                         , onInput (AddVariableInput individualIndex)
                                         , placeholder "Name of the variable to add (example: statut_marital)"
-                                          -- TODO i18n
+
+                                        -- TODO i18n
                                         , type_ "text"
                                         , value
                                             (Dict.get individualIndex model.nextVariables
@@ -726,7 +735,8 @@ viewIndividual model entities variablesResponse individualIndex individual =
                                             , onClick (AddVariable individualIndex)
                                             ]
                                             [ text "Add variable"
-                                              -- TODO i18n
+
+                                            -- TODO i18n
                                             ]
                                         ]
                                     ]
@@ -754,7 +764,8 @@ viewIndividual model entities variablesResponse individualIndex individual =
                                         , onClick (RemoveIndividual individualIndex)
                                         ]
                                         [ text "Remove individual"
-                                          -- TODO i18n
+
+                                        -- TODO i18n
                                         ]
                                     ]
                                 ]
@@ -796,7 +807,8 @@ viewIndividuals model entities variablesResponse =
                     , onClick (AddIndividual entities)
                     ]
                     [ text "Add an individual"
-                      -- TODO i18n
+
+                    -- TODO i18n
                     ]
                , div [ class "checkbox" ]
                     [ label []
@@ -807,12 +819,14 @@ viewIndividuals model entities variablesResponse =
                             []
                         , text " "
                         , text "Display roles"
-                          -- TODO i18n
+
+                        -- TODO i18n
                         ]
                     ]
                , label [ class "form-group" ]
                     [ text "Calculate for year"
-                      --TODO i18n
+
+                    --TODO i18n
                     , input
                         [ class "form-control"
                         , onInput (SetYear << (String.toInt >> Result.withDefault model.year))
@@ -843,7 +857,8 @@ viewInputValue model individualIndex variableName variableLabel inputValue =
                         []
                     , text " "
                     , text "Control variation"
-                      -- TODO i18n
+
+                    -- TODO i18n
                     ]
                 ]
     in
@@ -854,7 +869,8 @@ viewInputValue model individualIndex variableName variableLabel inputValue =
                in
                 label
                     [ title variableLabel
-                      -- Let the user hover the truncated label to see the full label
+
+                    -- Let the user hover the truncated label to see the full label
                     ]
                     [ text (truncatedLabel ++ "...") ]
              ]
@@ -901,7 +917,8 @@ viewInputValue model individualIndex variableName variableLabel inputValue =
                                         [ class "form-control"
                                         , Html.Attributes.max (axis.count - 1 |> toString)
                                         , Html.Attributes.min "0"
-                                          -- TODO Use Html.Extra.Event
+
+                                        -- TODO Use Html.Extra.Event
                                         , onInput
                                             (SetAxisSelectedIndex individualIndex variableName
                                                 << (String.toInt >> Result.withDefault 0)
@@ -989,29 +1006,30 @@ viewNavBar =
                             -- TODO Add to program flags
                             [ text "Mentions légales" ]
                         ]
-                      -- , li [ class "visible-xs-block" ] -- TODO
-                      --     [ a [ href "/privacy-policy" ]
-                      --         [ text "Politique de confidentialité" ]
-                      --     ]
-                      -- , li [ class "dropdown" ] -- TODO
-                      --     [ a [ class "dropdown-toggle", attribute "data-toggle" "dropdown", href "#" ]
-                      --         [ text "Français "
-                      --         , span [ class "caret" ]
-                      --             []
-                      --         ]
-                      --     , ul [ class "dropdown-menu", attribute "role" "menu" ]
-                      --         [ li [ class "dropdown-header", attribute "role" "presentation" ]
-                      --             [ text "France" ]
-                      --         , li []
-                      --             [ a [ href "/" ]
-                      --                 [ text "Français" ]
-                      --             ]
-                      --         , li []
-                      --             [ a [ href "/en" ]
-                      --                 [ text "English" ]
-                      --             ]
-                      --         ]
-                      --     ]
+
+                    -- , li [ class "visible-xs-block" ] -- TODO
+                    --     [ a [ href "/privacy-policy" ]
+                    --         [ text "Politique de confidentialité" ]
+                    --     ]
+                    -- , li [ class "dropdown" ] -- TODO
+                    --     [ a [ class "dropdown-toggle", attribute "data-toggle" "dropdown", href "#" ]
+                    --         [ text "Français "
+                    --         , span [ class "caret" ]
+                    --             []
+                    --         ]
+                    --     , ul [ class "dropdown-menu", attribute "role" "menu" ]
+                    --         [ li [ class "dropdown-header", attribute "role" "presentation" ]
+                    --             [ text "France" ]
+                    --         , li []
+                    --             [ a [ href "/" ]
+                    --                 [ text "Français" ]
+                    --             ]
+                    --         , li []
+                    --             [ a [ href "/en" ]
+                    --                 [ text "English" ]
+                    --             ]
+                    --         ]
+                    --     ]
                     ]
                 ]
             ]
